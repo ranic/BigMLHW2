@@ -78,6 +78,7 @@ public class Aggregate {
     public static void main(String[] args) throws IOException {
         if (args.length != 1 || Math.abs(Integer.valueOf(args[0])) > 1) {
             System.out.println("Must supply argument of either 1 (bigram) or 0 (unigram)");
+            System.out.println("Usage Example: cat unigram.txt | sort -k1 | java -Xmx128m Aggregate 0 > unigram_processed.txt");
             return;
         }
         int isBigram = Integer.valueOf(args[0]);
