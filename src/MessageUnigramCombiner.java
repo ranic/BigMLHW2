@@ -47,11 +47,11 @@ public class MessageUnigramCombiner {
                     String format = (firstWord.equals(curWord)) ? "%s\tBx=%d,Cx=%d\n" : "%s\tBy=%d,Cy=%d\n";
                     // Respond to request with foreCount and backCount
                     bw.write(String.format(format, bigram, backCount, foreCount));
-                } /*else {
-                    // No information for this word exists
-                    bw.write(String.format("%s\tBx=0,Cx=0\n", bigram));
-                    bw.write(String.format("%s\tBy=0,Cy=0\n", bigram));
-                }*/
+                } else {
+                    // No information for this word exists (this should never happen)
+                    String format = (firstWord.equals(curWord)) ? "%s\tBx=0,Cx=0\n" : "%s\tBy=0,Cy=0\n";
+                    bw.write(String.format(format, bigram));
+                }
             }
         }
 
