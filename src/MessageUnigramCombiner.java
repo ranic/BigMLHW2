@@ -12,8 +12,6 @@ import java.util.regex.Pattern;
  * Created by vijay on 2/5/15.
  */
 public class MessageUnigramCombiner {
-
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
@@ -52,6 +50,8 @@ public class MessageUnigramCombiner {
                     String format = (firstWord.equals(curWord)) ? "%s\tBx=0,Cx=0\n" : "%s\tBy=0,Cy=0\n";
                     bw.write(String.format(format, bigram));
                 }
+            } else if (line.contains("UNIGRAM_COUNTS")) {
+                bw.write(line + "\n");
             }
         }
 

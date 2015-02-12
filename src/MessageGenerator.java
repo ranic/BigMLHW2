@@ -12,10 +12,12 @@ public class MessageGenerator {
 
         // For each word in each phrase, output <word>,<phrase> pairs
         while ((line = br.readLine()) != null) {
-            String phrase = line.split("\t")[0];
-            String[] words = phrase.split(" ");
-            for (String word : words) {
-                bw.write(String.format("%s,%s\n", word, phrase));
+            if (!line.contains("BIGRAM_COUNTS")) {
+                String phrase = line.split("\t")[0];
+                String[] words = phrase.split(" ");
+                for (String word : words) {
+                    bw.write(String.format("%s,%s\n", word, phrase));
+                }
             }
         }
 
