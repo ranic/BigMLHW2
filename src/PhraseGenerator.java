@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
  *  - Number of distinct background bigram counts
  */
 public class PhraseGenerator {
-    private static final int NUM_PHRASES = 20;
+    private static final int NUM_PHRASES = 10000;
     private static PriorityQueue<PhraseScore> topPhrases = new PriorityQueue<PhraseScore>(NUM_PHRASES+1);
     private static final Pattern ATTR_PATTERN = Pattern.compile("Bx=(\\d+),Cx=(\\d+) Bxy=(\\d+),Cxy=(\\d+) By=(\\d+),Cy=(\\d+)");
     //private static final Pattern BIGRAM_COUNTS_PATTERN = Pattern.compile("BIGRAM_COUNTS (\\d+) (\\d+) (\\d+) (\\d+)");
@@ -54,10 +54,9 @@ public class PhraseGenerator {
             } else {
                 // New phrase; compute score and add to max heap
                 if (prevPhrase != null) {
-                    PhraseScore p = computeScore(curPhrase, attributes);
+                    PhraseScore p = computeScore(prevPhrase, attributes);
                     insertPhraseScore(p);
                 }
-                //System.out.println(line);
                 // Reset local variables
                 prevPhrase = curPhrase;
                 attributes = curAttribute;
